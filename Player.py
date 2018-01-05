@@ -1,13 +1,14 @@
-from Card import Card
 class Player:
-    def __init__(self):
+    def __init__(self, player_num):
         self.money = 2
         self.cards = []
-        self.numcards = 0
+        self.num_cards = 0
+        self.dead = False
+        self.player_num = player_num
 
     def deal(self, card):
         self.cards.append(card)
-        self.numcards += 1
+        self.num_cards += 1
     
     def getMove(self):
         m = input("  Your move: ")
@@ -19,4 +20,6 @@ class Player:
         return {"action": m[0], "role": m[1], "victim": m[2]}
     
     def kill(self):
-        numcards -= 1
+        self.num_cards -= 1
+        if self.num_cards == 0:
+            self.dead = True
